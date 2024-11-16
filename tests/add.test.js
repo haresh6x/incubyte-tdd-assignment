@@ -30,4 +30,14 @@ describe("add function", () => {
     const result = add("//;\n1;2;3");
     expect(result).to.equal(6);
   });
+
+  it("should throw an error if there is single negative number", () => {
+    const result = () => add("1,-2,3");
+    expect(result).to.throw(Error, "negative numbers not allowed -2");
+  });
+
+  it("should throw an error if there are multiple negative numbers", () => {
+    const result = () => add("1,-2,-3");
+    expect(result).to.throw(Error, "negative numbers not allowed -2, -3");
+  });
 });
