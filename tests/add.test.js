@@ -5,4 +5,9 @@ describe("add function", () => {
   it("should return 0 for an empty string", () => {
     expect(add("")).to.equal(0);
   });
+
+  it("should return the sum of comma separated numbers", () => {
+    const result = add("1,5");
+    expect(result).to.equal(6);
+  });
 });
