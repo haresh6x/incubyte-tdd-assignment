@@ -15,4 +15,14 @@ describe("add function", () => {
     const result = add("1,5");
     expect(result).to.equal(6);
   });
+
+  it("should return the sum of newline separated numbers", () => {
+    const result = add("1\n2\n3");
+    expect(result).to.equal(6);
+  });
+
+  it("should return the sum of comma and newline separated numbers", () => {
+    const result = add("1\n2,3");
+    expect(result).to.equal(6);
+  });
 });
