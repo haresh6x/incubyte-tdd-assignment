@@ -8,18 +8,39 @@ const add = (numbers) => {
     if (delimiterMatch) {
       const delimiter = delimiterMatch[1]; // custom delimiter
       numbers = numbers.replace(/^\/\/.+\n/, ""); // remove the delimiter declaration
+
       // split by the custom delimiter
-      return numbers
-        .split(new RegExp(`\\${delimiter}`)) // use custom delimiter to split the string
-        .map((num) => parseFloat(num.trim())) // convert to numbers
-        .reduce((sum, num) => sum + num, 0); // sum numbers
+      const numbersArray = numbers
+        .split(new RegExp(`\\${delimiter}`))
+        .map((num) => parseFloat(num.trim())); // convert to numbers
+
+      // check for negative numbers
+      const negativeNumbers = numbersArray.filter((item) => item < 0);
+      if (negativeNumbers.length) {
+        throw new Error(
+          `negative numbers not allowed ${negativeNumbers.join(", ")}`
+        );
+      }
+
+      // return the sum
+      return numbersArray.reduce((sum, num) => sum + num, 0);
     }
   }
 
-  return numbers
+  const numbersArray = numbers
     .split(/,|\n/)
-    .map((num) => parseFloat(num.trim())) // convert to numbers
-    .reduce((sum, num) => sum + num, 0); // sum numbers
+    .map((num) => parseFloat(num.trim())); // convert to numbers
+
+  // check for negative numbers
+  const negativeNumbers = numbersArray.filter((item) => item < 0);
+  if (negativeNumbers.length) {
+    throw new Error(
+      `negative numbers not allowed ${negativeNumbers.join(", ")}`
+    );
+  }
+
+  //return the sum
+  return numbersArray.reduce((sum, num) => sum + num, 0);
 };
 
 export default add;
