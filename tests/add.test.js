@@ -25,4 +25,9 @@ describe("add function", () => {
     const result = add("1\n2,3");
     expect(result).to.equal(6);
   });
+
+  it("should support a custom delimiter", () => {
+    const result = add("//;\n1;2;3");
+    expect(result).to.equal(6);
+  });
 });
