@@ -6,6 +6,11 @@ describe("add function", () => {
     expect(add("")).to.equal(0);
   });
 
+  it("should return the sum of single numbers", () => {
+    const result = add("5");
+    expect(result).to.equal(5);
+  });
+
   it("should return the sum of comma separated numbers", () => {
     const result = add("1,5");
     expect(result).to.equal(6);
